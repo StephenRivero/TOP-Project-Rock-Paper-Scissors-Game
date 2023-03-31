@@ -9,17 +9,21 @@ function getComputerChoice() {
         }
 }
 
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
+function playRound(playerSelection, computerSelection) {
+    if (computerSelection == 'Paper' && playerSelection){
+        return "You lose! Paper beats Rock."
+    } else if (computerSelection == 'Scissors' && playerSelection){
+        return "You win! Rock beats Scissors."
+    } else {
+        return "It's a tie!"
+    }
+  }
+   
+  const playerSelection = "rock";
+  const computerSelection = getComputerChoice();
+  
+  console.log(playRound(playerSelection, computerSelection));
+  
+
+
+
