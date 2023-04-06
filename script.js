@@ -1,50 +1,83 @@
 function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3)
-    if (randomNumber == 0){
-        return "Rock".toLowerCase()
-    } else if (randomNumber == 1){
-        return "Paper".toLowerCase()
+  let computerChoice = Math.floor(Math.random() * 3)
+    if (computerChoice == 0){
+        return 'rock'
+    } else if (computerChoice == 1){
+        return 'paper'
     } else {
-        return "Scissors".toLowerCase()
+        return 'scissors'
     }
 }
 
+function getPlayerChoice() {
+  let playerChoice = prompt('Please type Rock, Paper, or Scissors')
+    if (playerChoice.toLowerCase() == 'rock'){
+      return 'rock'
+    } else if (playerChoice.toLowerCase() == 'paper'){
+      return 'paper'
+    } else if (playerChoice.toLowerCase() == 'scissors'){
+      return 'scissors'
+    }
+}
+
+// function getPlayerChoice() {
+//     let playerChoice = '';
+//     while (playerChoice !== 'rock' && playerChoice !== 'paper' && playerChoice !== 'scissors') {
+//       playerChoice = prompt('Please choose Rock, Paper, or Scissors:');
+//     }
+//     return playerChoice;
+// }
+
+
 function playRound(playerSelection, computerSelection) {
-    if (computerSelection == "paper" && playerSelection == "rock"){
-        return "Computer wins! Paper beats rock"
-    } else if (computerSelection == "scissors" && playerSelection == "rock"){
-        return "Player wins! Rock beats scissors"
-    } else {
-        return "It's a Tie!"
+    if (computerSelection == 'paper' && playerSelection == 'rock'){
+        return "You lose! Paper beats Rock."
+    } else if (computerSelection == 'scissors' && playerSelection == 'rock'){
+        return "You win! Rock beats Scissors."
+    } else if (computerSelection == 'rock' && playerSelection == 'paper'){
+        return "You win! Paper beats Rock."
+    } else if (computerSelection == 'scissors' && playerSelection == 'paper'){
+        return "You lose! Scissors beats Paper."
+    } else if (computerSelection == 'rock' && playerSelection == 'scissors'){
+        return "You lose! Rock beats Scissors."
+    } else if (computerSelection == 'paper' && playerSelection == 'scissors'){
+        return "You win! Scissors beats Paper."
+    } 
+    else {
+        return "It's a tie!"
     }
   }
    
-  let playerSelection;
+  const playerSelection = getPlayerChoice();
   const computerSelection = getComputerChoice();
-
-
-  function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-      const playerSelection = prompt("Round " + (i+1) + ": Choose rock, paper, or scissors").trim().toLowerCase();
-      const computerSelection = getComputerChoice();
-      const result = playRound(playerSelection, computerSelection);
-      console.log(result);
-      if (result.startsWith("Player wins")) {
-        playerScore++;
-      } else if (result.startsWith("Computer wins")) {
-        computerScore++;
-      }
-    }
-    console.log("Final score: Player " + playerScore + " - " + computerScore + " Computer");
-    if (playerScore > computerScore) {
-      console.log("Player wins the game!");
-    } else if (computerScore > playerScore) {
-      console.log("Computer wins the game!");
-    } else {
-      console.log("It's a tie game!");
+  
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = getPlayerChoice();
+    const computerSelection = getComputerChoice();
+    const result = playRound(playerSelection, computerSelection);
+    console.log(result);
+    if (result.includes('win')) {
+      playerScore++;
+    } else if (result.includes('lose')) {
+      computerScore++;
     }
   }
+  if (playerScore > computerScore) {
+    console.log(`You won the game! Final score: ${playerScore} - ${computerScore}`);
+  } else if (playerScore < computerScore) {
+    console.log(`You lost the game! Final score: ${playerScore} - ${computerScore}`);
+  } else {
+    console.log(`It's a tie! Final score: ${playerScore} - ${computerScore}`);
+  }
+}
+
+game();
+
+
   
-  game();
+
+
+
