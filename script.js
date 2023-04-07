@@ -10,24 +10,14 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-  let playerChoice = prompt('Please type Rock, Paper, or Scissors')
-    if (playerChoice.toLowerCase() == 'rock'){
-      return 'rock'
-    } else if (playerChoice.toLowerCase() == 'paper'){
-      return 'paper'
-    } else if (playerChoice.toLowerCase() == 'scissors'){
-      return 'scissors'
+  let playerChoice = prompt('Please type Rock, Paper, or Scissors').toLowerCase()
+    if (playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors'){
+      return playerChoice;
+    } else {
+      prompt('Invalid answer! Please type Rock, Paper, or Scissors').toLowerCase();
+      return getPlayerChoice();
     }
 }
-
-// function getPlayerChoice() {
-//     let playerChoice = '';
-//     while (playerChoice !== 'rock' && playerChoice !== 'paper' && playerChoice !== 'scissors') {
-//       playerChoice = prompt('Please choose Rock, Paper, or Scissors:');
-//     }
-//     return playerChoice;
-// }
-
 
 function playRound(playerSelection, computerSelection) {
     if (computerSelection == 'paper' && playerSelection == 'rock'){
@@ -47,9 +37,6 @@ function playRound(playerSelection, computerSelection) {
         return "It's a tie!"
     }
   }
-   
-  const playerSelection = getPlayerChoice();
-  const computerSelection = getComputerChoice();
   
 function game() {
   let playerScore = 0;
